@@ -84,16 +84,25 @@ class BrowserController:
     @classmethod
     def launch_browser(cls, sp, browser_type, launch_options):
         if browser_type == 'chromium':
-            launch_options['args'] = ['--userDataDir=~/Library/Application\ Support/Google/Chrome/Default']
             browser = sp.chromium.launch(**launch_options)
+        elif browser_type == 'chromium_':
+            launch_options['user_data_dir'] = r'~/Library/Application Support/Google/Chrome/Default'
+            browser = sp.chromium.launch_persistent_context(**launch_options)
+            page = browser.new_page()
+            return browser, '', page
         elif browser_type == 'firefox':
             browser = sp.firefox.launch(**launch_options)
         elif browser_type == 'webkit':
             browser = sp.webkit.launch(**launch_options)
         elif browser_type == 'edge':
             launch_options['channel'] = 'msedge'
-            launch_options['args'] = ['--userDataDir=~/Library/Application\ Support/Microsoft\ Edge/Default']
             browser = sp.chromium.launch(**launch_options)
+        elif browser_type == 'edge_':
+            launch_options['channel'] = 'msedge'
+            launch_options['user_data_dir'] = r'~/Library/Application Support/Microsoft Edge/Default'
+            browser = sp.chromium.launch_persistent_context(**launch_options)
+            page = browser.new_page()
+            return browser, '', page
         else:
             logger.error('input browser_type error')
             browser = sp.chromium.launch(**launch_options)
@@ -114,7 +123,8 @@ class BrowserController:
         Returns:
 
         """
-        context.close()
+        if context != '':
+            context.close()
         browser.close()
 
     @classmethod

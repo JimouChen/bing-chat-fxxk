@@ -7,16 +7,17 @@ class NewBingCrawler:
     # url = 'https://ai.nothingnessvoid.tech/web/index.html#/'
     url = 'https://bing.nvoid.live/'
     close_flag_selector = 'body > div.n-modal-container > div > div > div.n-scrollbar-container > div > div.n-card.n-modal.w-11\/12.lg\:w-\[900px\] > div.n-card-header > button > i > svg'
-    max_conversation_times = 30 # 默认是30，30次对话就刷新页面
+    max_conversation_times = 30  # 默认是30，30次对话就刷新页面
 
     @classmethod
     def search(cls, prompt: str):
         with sync_playwright() as sp:
             browser, context, page = BrowserController.load(sp,
-                                                            browser_type='chromium',
-                                                            # browser_type='edge',
+                                                            browser_type='chromium_',
                                                             headless=False)
             page.goto(cls.url, timeout=10000)
+            if page.locator(cls.close_flag_selector).count() != 0:
+                page.click(cls.close_flag_selector)
             page.click('#tone-options > li:nth-child(1) > button')
             page.locator('#searchbox').fill(prompt, timeout=1000)
             page.wait_for_timeout(500)
@@ -40,12 +41,11 @@ class NewBingCrawler:
 
         with sync_playwright() as sp:
             browser, context, page = BrowserController.load(sp,
-                                                            browser_type='chromium',
-                                                            # browser_type='edge',
+                                                            browser_type='chromium_',
                                                             headless=False)
             page.goto(cls.url, timeout=10000)
-            # if cls.close_flag_selector in page.content():
-            page.click(cls.close_flag_selector)
+            if page.locator(cls.close_flag_selector).count():
+                page.click(cls.close_flag_selector)
             page.click('#tone-options > li:nth-child(1) > button')
             temp_last_ans = ''
 
