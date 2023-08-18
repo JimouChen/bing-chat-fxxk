@@ -4,6 +4,7 @@ from comm.utils import *
 
 
 class NewBingCrawler:
+    # url可见bing镜像
     # url = 'https://ai.nothingnessvoid.tech/web/index.html#/'
     url = 'https://bing.nvoid.live/'
     close_flag_selector = 'body > div.n-modal-container > div > div > div.n-scrollbar-container > div > div.n-card.n-modal.w-11\/12.lg\:w-\[900px\] > div.n-card-header > button > i > svg'
