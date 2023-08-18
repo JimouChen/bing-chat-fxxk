@@ -7,7 +7,7 @@ class NewBingCrawler:
     # url = 'https://ai.nothingnessvoid.tech/web/index.html#/'
     url = 'https://bing.nvoid.live/'
     close_flag_selector = 'body > div.n-modal-container > div > div > div.n-scrollbar-container > div > div.n-card.n-modal.w-11\/12.lg\:w-\[900px\] > div.n-card-header > button > i > svg'
-    max_conversation_times = 30  # 默认是30，30次对话就刷新页面
+    max_conversation_times = 10  # 默认是30，30次对话就刷新页面，建议10次就刷新
 
     @classmethod
     def search(cls, prompt: str):
