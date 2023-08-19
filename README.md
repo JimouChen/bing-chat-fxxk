@@ -47,6 +47,7 @@ NewBingCrawler.search_from_prompt_json(prompt_path='./data/answer/answer.json')
 - 若链接不可用，则换一个链接，若出现连接网络的问题，则可能是该网站访问请求量较大，暂时用不了
 - 一般来说，不需要科学上网即可访问
 - 更换网络可参考：[不用代理的Bing镜像站](https://github.com/Nothingness-Void/Public-bing-chatgpt-proxy)
+- 对于NewBing镜像url，请控制好每天请求的数量，目前测试过一天几百条不是问题
 
 
 ## Author

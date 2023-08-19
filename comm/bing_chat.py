@@ -30,7 +30,7 @@ class NewBingCrawler:
                     res = soup.findAll('div', {'aria-live': 'polite'})[-1]
                     ans_text = res.text[7:] if res else ''
                     break
-                page.wait_for_timeout(2000)
+                page.wait_for_timeout(4000)
             logger.debug(f'Q: {prompt}')
             logger.success(f'A: {ans_text}\n\n')
             BrowserController.close(context, browser)
