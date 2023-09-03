@@ -7,7 +7,7 @@
     `git clone https://github.com/JimouChen/bing-chat-fxxk`
 - 安装依赖
 
-    `pip3 install -r requuirements.txt`
+    `pip3 install -r requirements.txt`
 - Playwright注意
   - playwright的安装比较特殊，这里可参考一下网上
     在上面正常安装完之后，记得 `python -m playwright install`，这一句是下载对应的浏览器内核
